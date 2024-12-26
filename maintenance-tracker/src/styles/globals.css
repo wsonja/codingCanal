@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/Figtree/Figtree-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Figtree';
+  font-style: italic;
+  font-weight: 100 900;
+  src: url('/fonts/Figtree/Figtree-Italic-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 100 900;
+  src: url('/fonts/DM_Sans/DMSans-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Figtree', sans-serif;
+}
+
+body {
+  @apply bg-primary text-secondary font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-title text-secondary;
+}
