@@ -1,12 +1,34 @@
 ## Setup Instructions
-Run *npm run dev* (or *pnpm dev*) to start the development server. 
+Run `npm run dev` (or `pnpm dev`) to start the development server. 
 Type in http://localhost:3000 to any browser to view the webapp.
 
-## To run E2E tests (Playwright):
-npm init -y <br /> 
-npm install --save-dev @playwright/test <br /> 
-npx playwright install <br /> 
-npx playwright test --ui <br /> 
+## Testing strategy
+**To run E2E tests (Playwright):**
+
+    npm init -y
+    npm install --save-dev @playwright/test 
+    npx playwright install
+    npx playwright test --ui
+
+**Equipment Management:**
+
+- Create New Equipment: Verifies that equipment can be added with valid data to ensure core functionality works as expected.
+- Validation Errors for Invalid Equipment: Ensures proper error messages appear when invalid data (like short names) is submitted, maintaining data integrity.
+- Edit Existing Equipment: Confirms the ability to modify equipment details, critical for keeping records updated.
+- Filter Equipment Table: Tests the status filter dropdown to ensure users can filter records based on equipment status, improving UX.
+
+
+**Maintenance Record Management:**
+
+- Create New Maintenance Record: Confirms the ability to add a maintenance record successfully.
+- Validation Errors (Hours Spent): Ensures error messages appear when entering invalid maintenance hours (e.g., over 24 hours or negative values).
+- Display Equipment Name in Table: Checks that the equipment name is properly displayed in the maintenance table based on the equipment ID.
+- Filter Maintenance Records: Validates that filtering maintenance records by date range works correctly to ensure data visibility and filter reliability.
+
+On top of Playwright, **Postman** was used for manual API testing
+- Verified successful data creation, updates, and retrieval.
+- Tested error handling for invalid inputs, such as empty fields and invalid date ranges.
+- Confirmed bulk updates and filters worked as expected.
 
 ## Completed features:
 ![image](https://github.com/user-attachments/assets/8a24a4e7-3a7a-40b9-b568-4a57cfa61094)
@@ -28,13 +50,12 @@ npx playwright test --ui <br />
 - Bulk status updates
 
 ## Endpoints
-Equipment Endpoints:
+**Equipment Endpoints:**
 - GET /api/equipment – Fetch all equipments (+ associated maintenance data)
 - POST /api/equipment – Create a new equipment
 - PUT /api/equipment/:id – Update an existing equipment's status by its ID
 
-
-Maintenance Record Endpoints:
+**Maintenance Record Endpoints:**
 - GET /api/maintenance – Fetch all maintenance records with optional filters
 - GET /api/maintenance?type=grouped – Fetch maintenance hours grouped by department
 - GET /api/maintenance?dateRange=[24hours|week|month|3months|6months|year] – Fetch maintenance records filtered by date range
