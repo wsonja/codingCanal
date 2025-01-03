@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
+    // Fetch all equipment
     try {
       const equipment = await prisma.equipment.findMany({
         include: { maintenanceRecords: true },
@@ -12,9 +13,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error('Error fetching equipment:', error);
       res.status(500).json({ error: 'Failed to fetch equipment' });
     }
-  } else if (req.method === 'POST') {
+  } 
+  
+  else if (req.method === 'POST') {
+    // Create new equipment
     try {
-      const data = req.body; // Ensure your client sends data in the correct format
+      const data = req.body; 
       const newEquipment = await prisma.equipment.create({
         data,
       });
@@ -23,8 +27,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.error('Error creating equipment:', error);
       res.status(500).json({ error: 'Failed to create equipment' });
     }
-  } else {
-    res.setHeader('Allow', ['GET', 'POST']);
+  } 
+  
+  else {
+    res.setHeader('Allow', ['GET', 'POST', 'PUT']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }

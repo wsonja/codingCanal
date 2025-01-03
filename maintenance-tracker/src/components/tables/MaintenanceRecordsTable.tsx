@@ -7,6 +7,7 @@ const MaintenanceRecordsTable = ({ data }: { data: any[] }) => {
         <thead className="bg-gray-100">
           <tr>
             <th className="text-left px-4 py-2 border-b">Date</th>
+            <th className="text-left px-4 py-2 border-b">Equipment Name</th>
             <th className="text-left px-4 py-2 border-b">Type</th>
             <th className="text-left px-4 py-2 border-b">Technician</th>
             <th className="text-left px-4 py-2 border-b">Hours Spent</th>
@@ -20,9 +21,10 @@ const MaintenanceRecordsTable = ({ data }: { data: any[] }) => {
           {data.map((record) => (
             <tr key={record.id}>
               <td className="px-4 py-2 border-b">{new Date(record.date).toLocaleDateString()}</td>
+              <td className="px-4 py-2 border-b">{record.equipment?.name || 'N/A'}</td> 
               <td className="px-4 py-2 border-b">{record.type}</td>
               <td className="px-4 py-2 border-b">{record.technician}</td>
-              <td className="px-4 py-2 border-b">{record.hoursSpent}</td>
+              <td className="px-4 py-2 border-b">{record.hoursSpent ?? 'N/A'}</td> 
               <td className="px-4 py-2 border-b">{record.description}</td>
               <td className="px-4 py-2 border-b">{record.priority}</td>
               <td className="px-4 py-2 border-b">{record.completionStatus}</td>

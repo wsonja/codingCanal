@@ -35,7 +35,7 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
       className="bg-white p-6 rounded-lg shadow space-y-4"
     >
       <div>
-        <label className="block font-title text-gray-700">Name</label>
+        <label className="block  font-bold mb-2 ">Name</label>
         <Controller
           name="name"
           control={control}
@@ -46,10 +46,10 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
             />
           )}
         />
-        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+        {errors.name && <p className="text-red-500 mb-4 text-sm">{errors.name.message}</p>}
       </div>
       <div>
-        <label className="block font-title text-gray-700">Location</label>
+        <label className="block  font-bold mb-2 ">Location</label>
         <Controller
           name="location"
           control={control}
@@ -60,10 +60,10 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
             />
           )}
         />
-        {errors.location && <p className="text-red-500 text-sm">{errors.location.message}</p>}
+        {errors.location && <p className="text-red-500 mb-4 text-sm">{errors.location.message}</p>}
       </div>
       <div>
-        <label className="block font-title text-gray-700">Department</label>
+        <label className="block  font-bold mb-2 ">Department</label>
         <Controller
           name="department"
           control={control}
@@ -78,7 +78,7 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
         />
       </div>
       <div>
-        <label className="block font-title text-gray-700">Model</label>
+        <label className="block  font-bold mb-2 ">Model</label>
         <Controller
           name="model"
           control={control}
@@ -89,10 +89,10 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
             />
           )}
         />
-        {errors.model && <p className="text-red-500 text-sm">{errors.model.message}</p>}
+        {errors.model && <p className="text-red-500 mb-4 text-sm">{errors.model.message}</p>}
       </div>
       <div>
-        <label className="block font-title text-gray-700">Serial Number</label>
+        <label className="block  font-bold mb-2 ">Serial Number</label>
         <Controller
           name="serialNumber"
           control={control}
@@ -103,10 +103,10 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
             />
           )}
         />
-        {errors.serialNumber && <p className="text-red-500 text-sm">{errors.serialNumber.message}</p>}
+        {errors.serialNumber && <p className="text-red-500 mb-4 text-sm">{errors.serialNumber.message}</p>}
       </div>
       <div>
-        <label className="block font-title text-gray-700">Install Date</label>
+        <label className="block  font-bold mb-2 ">Install Date</label>
         <Controller
             name="installDate"
             control={control}
@@ -120,15 +120,15 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
                 />
             )}
         />
-        {errors.installDate && <p className="text-red-500 text-sm">{errors.installDate.message}</p>}
+        {errors.installDate && <p className="text-red-500 mb-4 text-sm">{errors.installDate.message}</p>}
       </div>
       <div>
-        <label className="block font-title text-gray-700">Status</label>
+        <label className="block  font-bold mb-2 ">Status</label>
         <Controller
           name="status"
           control={control}
           render={({ field }) => (
-            <select {...field} className="w-full p-2 border border-gray-300 rounded">
+            <select {...field} className="w-full p-2 border border-gray-300 rounded mb-2">
               <option value="Operational">Operational</option>
               <option value="Down">Down</option>
               <option value="Maintenance">Maintenance</option>
@@ -139,7 +139,7 @@ const EquipmentForm = ({ onSubmit }: { onSubmit: (data: EquipmentFormValues) => 
       </div>
       <button
         type="submit"
-        className="bg-blue-500 text-white font-title py-2 px-4 rounded"
+        className="bg-blue-500 text-white  font-bold mb-2 py-2 px-4 rounded"
       >
         Submit
       </button>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { PieChart, Pie, Tooltip } from 'recharts';
+import { PieChart, Pie, Tooltip, Cell } from 'recharts';
 
 interface ChartData {
   name: string;
@@ -38,43 +38,49 @@ const StatusChart = () => {
     fetchStatusData();
   }, []);
 
-  // Custom label function
+  const COLORS = ['#004aad', '#336ebd', '#6692ce', '#99b7de'];
+
   const renderCustomLabel = (entry: any) => {
     const RADIAN = Math.PI / 180;
-    const radius = 100 + 30; // Adjust based on outerRadius
-    const x = Math.cos(-entry.midAngle * RADIAN) * radius + 120; // Center position is half of width (250/2)
-    const y = Math.sin(-entry.midAngle * RADIAN) * radius + 150;
+    const radius = entry.outerRadius + 45;
+    const x = Math.cos(-entry.midAngle * RADIAN) * radius + 185;
+    const y = Math.sin(-entry.midAngle * RADIAN) * radius + 140;
 
     return (
       <text
         x={x}
         y={y}
         fill="black"
-        textAnchor={x > 50 ? 'start' : 'end'} // Adjust alignment based on center
+        textAnchor="middle"
         dominantBaseline="central"
-        style={{ fontSize: 14 }} // Smaller font size for smaller chart
+        style={{ fontSize: 12 }}
       >
-        {`${entry.name}`}
+        {entry.name}
       </text>
     );
   };
 
   return (
-    <div className="bg-light rounded-lg shadow p-6">
-      <h2 className="text-lg font-bold mb-4">Equipment Status</h2>
-      <PieChart width={300} height={300}>
-        <Pie
-          data={data}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          outerRadius={100} // Reduced outerRadius to fit smaller size
-          fill="#004aad"
-          label={renderCustomLabel}
-        />
-        <Tooltip />
-      </PieChart>
+    <div className="bg-light rounded-lg shadow p-6 flex flex-col">
+      <h2 className="text-lg font-bold mb-4 text-left">Equipment Status</h2>
+      <div className="flex justify-center">
+        <PieChart width={400} height={280}>
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={90}
+            label={renderCustomLabel}
+          >
+            {data.map((_, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+          <Tooltip />
+        </PieChart>
+      </div>
     </div>
   );
 };

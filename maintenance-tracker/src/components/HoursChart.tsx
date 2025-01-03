@@ -28,7 +28,7 @@ const HoursChart = () => {
           <XAxis dataKey="department" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="hours" fill="#82ca9d" />
+          <Bar dataKey="hours" fill="#6692ce" />
         </BarChart>
       </ResponsiveContainer>
     </div>

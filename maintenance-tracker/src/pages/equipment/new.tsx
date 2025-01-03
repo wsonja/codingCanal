@@ -5,22 +5,22 @@ import { v4 as uuidv4 } from 'uuid';
 import BackButton from '@/components/BackButton';
 
 const EquipmentManagementPage = () => {
-  const handleFormSubmit = async (data: any) => {
+  const handleFormSubmit = async (data: Omit<Equipment, 'id'>) => {
+    const equipmentWithId = { ...data, id: uuidv4() };  
     const response = await fetch('/api/equipment', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
-      });
-  
-      if (response.ok) {
+        body: JSON.stringify(equipmentWithId),
+    });
+
+    if (response.ok) {
         alert('Equipment added successfully!');
-      } else {
+    } else {
         alert('Failed to add equipment.');
-      }
-  
-  };
+    }
+};
 
   return (
     <div className="bg-primary min-h-screen flex items-center justify-center">

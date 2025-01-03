@@ -5,14 +5,22 @@ import BackButton from '@/components/BackButton';
 const NewMaintenanceRecord = () => {
   const handleFormSubmit = async (data: any) => {
     try {
-      // Send the form data to the API
-      const response = await fetch('/api/maintenance', {
+      const formattedData = {
+        ...data,
+        date: new Date(data.date).toISOString(),  
+        hoursSpent: Number(data.hoursSpent),
+        partsReplaced: Array.isArray(data.partsReplaced) 
+            ? data.partsReplaced 
+            : data.partsReplaced ? data.partsReplaced.split(',').map((part: string) => part.trim()) : []
+    };
+
+    const response = await fetch('/api/maintenance', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
-      });
+        body: JSON.stringify(formattedData),
+    });
 
       if (response.ok) {
         const newRecord = await response.json();
