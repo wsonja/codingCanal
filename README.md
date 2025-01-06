@@ -1,6 +1,7 @@
 ## Setup Instructions
 **To set up the webapp:**
 
+    cd maintenance-tracker
     npm install
     npx prisma migrate dev --name init
     node prisma/seed.mjs
