@@ -25,9 +25,9 @@ const StatusChart = () => {
           value,
         }));
 
-        if (chartData.length === 1) {
-          chartData.push({ name: 'Other', value: 0 });
-        }
+        // if (chartData.length === 1) {
+        //   chartData.push({ name: 'Other', value: 0 });
+        // }
 
         setData(chartData);
       } catch (error) {
