@@ -1,6 +1,12 @@
 ## Setup Instructions
-Run `npm run dev` (or `pnpm dev`) to start the development server. 
-Type in http://localhost:3000 to any browser to view the webapp.
+**To set up the webapp:**
+
+    npm install
+    npx prisma migrate dev --name init
+    node prisma/seed.mjs
+    npm run dev
+    
+Type http://localhost:3000 into any browser to view the webapp.
 
 ## Testing strategy
 **To run E2E tests (Playwright):**
