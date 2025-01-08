@@ -3,12 +3,39 @@ import { prisma } from '../src/lib/prisma.js';
 async function seed() {
   console.log('Seeding database...');
 
-  // Create Maintenance Records
-  await prisma.maintenanceRecord.createMany({
+  // Seed Equipment First
+  await prisma.equipment.createMany({
     data: [
       {
         id: '1',
-        equipmentId: '1', // Ensure this matches an existing equipment ID
+        name: 'Lathe Machine',
+        location: 'Workshop A',
+        department: 'Engineering',
+        model: 'LMX-200',
+        serialNumber: 'LM123456',
+        installDate: new Date('2022-05-10'),
+        status: 'Operational',
+      },
+      {
+        id: '2',
+        name: 'CNC Machine',
+        location: 'Workshop B',
+        department: 'Manufacturing',
+        model: 'CNC-5000',
+        serialNumber: 'CNC7890',
+        installDate: new Date('2021-03-15'),
+        status: 'Operational',
+      },
+    ],
+  });
+
+  console.log('Equipment added.');
+
+  // Now Seed Maintenance Records
+  await prisma.maintenanceRecord.createMany({
+    data: [
+      {
+        equipmentId: '1', // Matches the existing equipment ID
         date: new Date('2023-01-15'),
         type: 'Preventive',
         technician: 'John Doe',
@@ -18,8 +45,7 @@ async function seed() {
         completionStatus: 'Complete',
       },
       {
-        id: '2',
-        equipmentId: '2', // Ensure this matches an existing equipment ID
+        equipmentId: '2', // Matches the existing equipment ID
         date: new Date('2023-02-20'),
         type: 'Repair',
         technician: 'Jane Smith',
@@ -33,23 +59,6 @@ async function seed() {
 
   console.log('Maintenance records added.');
 
-  // Create Parts for Maintenance Records
-  await prisma.part.createMany({
-    data: [
-      {
-        id: '1',
-        name: 'Motor Belt',
-        maintenanceRecordId: '2', // Ensure this matches an existing maintenanceRecord ID
-      },
-      {
-        id: '2',
-        name: 'Air Filter',
-        maintenanceRecordId: '1', // Ensure this matches an existing maintenanceRecord ID
-      },
-    ],
-  });
-
-  console.log('Parts added.');
   await prisma.$disconnect();
 }
 
